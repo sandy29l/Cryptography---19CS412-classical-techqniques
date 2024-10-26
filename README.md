@@ -265,7 +265,8 @@ int main() {
     printf("Decrypted Text: %s\n", decryptedText);
 
     return 0;
-}~~~
+}
+~~~
 ## OUTPUT:
 ![Screenshot (87)](https://github.com/user-attachments/assets/09397523-d883-4f62-aafe-ec2b489b5727)
 
@@ -391,7 +392,8 @@ int main() {
 
     printf("Decoded message : %s\n", dec);
     return 0;
-}~~~
+}
+~~~
 ## OUTPUT:
 
 ![Screenshot (89)](https://github.com/user-attachments/assets/cf0e8194-fde6-4ac3-87a8-9487120de080)
@@ -498,7 +500,8 @@ void decipher() {
         printf("%c", 65 + (value % 26));
     }
     printf("\n");  // Added newline for output formatting
-}~~~
+}
+~~~
 ## OUTPUT:
 ![Screenshot (91)](https://github.com/user-attachments/assets/a636c058-c6c4-48cc-ae16-fc57f5795dc7)
 
