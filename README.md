@@ -24,41 +24,69 @@ Testing algorithm with different key values.
 
 ## PROGRAM:
 ~~~
-#include<stdio.h>
+#include <stdio.h>
 #include <string.h>
-#include<conio.h>
-#include <ctype.h>
-int main()
-{
-char plain[10], cipher[10];
-int key,i,length;
-int result;
-printf("\n Enter the plain text:");
-scanf("%s", plain);
-printf("\n Enter the key value:");
-scanf("%d", &key);
-printf("\n \n \t PLAIN TEXt: %s",plain);
-printf("\n \n \t ENCRYPTED TEXT: ");
-for(i = 0, length = strlen(plain); i < length; i++)
-{
-cipher[i]=plain[i] + key;
-if (isupper(plain[i]) && (cipher[i] > 'Z'))
-cipher[i] = cipher[i] - 26;
-if (islower(plain[i]) && (cipher[i] > 'z'))
-cipher[i] = cipher[i] - 26;
-printf("%c", cipher[i]);
+
+void encrypt(char message[], int shift) {
+    char ch;
+    for (int i = 0; message[i] != '\0'; ++i) {
+        ch = message[i];
+        if (ch >= 'a' && ch <= 'z') {
+            ch = ch + shift;
+            if (ch > 'z') {
+                ch = ch - 'z' + 'a' - 1;
+            }
+            message[i] = ch;
+        } else if (ch >= 'A' && ch <= 'Z') {
+            ch = ch + shift;
+            if (ch > 'Z') {
+                ch = ch - 'Z' + 'A' - 1;
+            }
+            message[i] = ch;
+        }
+    }
+    printf("Encrypted message: %s\n", message);
 }
-printf("\n \n \t AFTER DECRYPTION : ");
-for(i=0;i<length;i++)
-{
-plain[i]=cipher[i]-key;
-if(isupper(cipher[i])&&(plain[i]<'A'))
-plain[i]=plain[i]+26;
-if(islower(cipher[i])&&(plain[i]<'a'))
-plain[i]=plain[i]+26;
-printf("%c",plain[i]);
+
+void decrypt(char message[], int shift) {
+    char ch;
+    for (int i = 0; message[i] != '\0'; ++i) {
+        ch = message[i];
+        if (ch >= 'a' && ch <= 'z') {
+            ch = ch - shift;
+            if (ch < 'a') {
+                ch = ch + 'z' - 'a' + 1;
+            }
+            message[i] = ch;
+        } else if (ch >= 'A' && ch <= 'Z') {
+            ch = ch - shift;
+            if (ch < 'A') {
+                ch = ch + 'Z' - 'A' + 1;
+            }
+            message[i] = ch;
+        }
+    }
+    printf("Decrypted message: %s\n", message);
 }
-return 0;
+
+int main() {
+    char message[100];
+    int shift;
+
+    printf("Enter a message: ");
+    gets(message);  // reads a line of text
+
+    printf("Enter shift amount: ");
+    scanf("%d", &shift);
+
+    // Make a copy of the message to decrypt later
+    char encrypted_message[100];
+    strcpy(encrypted_message, message);
+
+    encrypt(encrypted_message, shift);
+    decrypt(encrypted_message, shift);
+
+    return 0;
 }
 ~~~
 ## OUTPUT:
